@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:assignment/screens/ViewSolution.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -45,7 +47,7 @@ Widget ListItem(context) {
 }
 
 class QuestionView extends StatelessWidget {
-  final String image;
+  final File image;
   final String title;
   const QuestionView({Key? key, required this.image, required this.title})
       : super(key: key);
@@ -79,9 +81,11 @@ class QuestionView extends StatelessWidget {
               Container(
                 height: 20,
               ),
-              Image(
-                image: AssetImage('images/$image'),
-              ),
+              Container(width: 300, height: 300, child: Image.file(image),decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Colors.black45,
+                  )),),
               Container(
                 height: 20,
               ),
