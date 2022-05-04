@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:assignment/screens/Treatments.dart';
 import 'package:assignment/screens/ViewSolution.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -81,26 +82,55 @@ class QuestionView extends StatelessWidget {
               Container(
                 height: 20,
               ),
-              Container(width: 300, height: 300, child: Image.file(image),decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: Colors.black45,
-                  )),),
+              Container(
+                width: 300,
+                height: 300,
+                child: Image.file(image),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: Colors.black45,
+                    )),
+              ),
               Container(
                 height: 20,
               ),
-              Expanded(
-                  child: SizedBox(
-                height: 100,
-                child: ListView(
-                  children: [
-                    ListItem(context),
-                    ListItem(context),
-                    ListItem(context),
-                    ListItem(context)
+              Container(
+                margin: const EdgeInsets.all(15.0),
+
+                // width: 300,
+                height: 200,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Colors.black45,
+                    )),
+                child: Center(
+                  child: Text('Disease Description'),
+                ),
+              ),
+              Container(
+                height: 20,
+              ),
+              new FlatButton(
+                height: 70,
+                onPressed: () => {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Treatments()))
+                },
+                color: Colors.lightGreenAccent,
+                padding: EdgeInsets.all(15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.checklist),
+                    Container(
+                      width: 20,
+                    ),
+                    Text("Find Treatments")
                   ],
                 ),
-              ))
+              )
             ],
           ),
         ));
