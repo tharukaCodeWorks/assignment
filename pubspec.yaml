@@ -33,6 +33,7 @@ dependencies:
   camera: ^0.9.4+16
   image_picker: ^0.8.4+10
   timeago: ^3.2.2
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +57,7 @@ flutter:
     - images/disease2.jpeg
     - images/disease3.jpeg
     - images/disease4.jpeg
+    - images/logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

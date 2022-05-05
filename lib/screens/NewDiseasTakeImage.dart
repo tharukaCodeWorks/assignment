@@ -5,12 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:image_picker/image_picker.dart';
 
-
-List<CameraDescription> cameras=[];
-
+List<CameraDescription> cameras = [];
 
 class NewDiseasTakeImage extends StatefulWidget {
-
   @override
   State<NewDiseasTakeImage> createState() => _NewDiseasTakeImageState();
 }
@@ -19,9 +16,10 @@ class _NewDiseasTakeImageState extends State<NewDiseasTakeImage> {
   File? _image;
 
   Future getImage() async {
-    final image = await ImagePicker.platform.pickImage(source: ImageSource.camera);
+    final image =
+        await ImagePicker.platform.pickImage(source: ImageSource.camera);
     setState(() {
-      _image =  File(image!.path);
+      _image = File(image!.path);
     });
   }
 
@@ -41,14 +39,24 @@ class _NewDiseasTakeImageState extends State<NewDiseasTakeImage> {
                     padding: const EdgeInsets.all(3.0),
                     width: 300,
                     height: 300,
-                    child: Center(child: _image!=null?Image.file(_image!):Icon(Icons.add_a_photo,color: Colors.grey,size: 70.0,) ,),
+                    child: Center(
+                      child: _image != null
+                          ? Image.file(_image!)
+                          : Icon(
+                              Icons.add_a_photo,
+                              color: Colors.grey,
+                              size: 70.0,
+                            ),
+                    ),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
                           color: Colors.black45,
                         )),
-
-              ), onTap:(){getImage();}),
+                  ),
+                  onTap: () {
+                    getImage();
+                  }),
               Padding(
                 padding: EdgeInsets.all(15),
                 child: ElevatedButton(
@@ -56,14 +64,14 @@ class _NewDiseasTakeImageState extends State<NewDiseasTakeImage> {
                     minimumSize: Size.fromHeight(
                         40), // fromHeight use double.infinity as width and 40 is the height
                   ),
-                  onPressed: _image!=null?() {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => QuestionView(
-                              image: _image!,
-                              title: "Symptoms of Fungal diseases",
-
-                            )));
-                  }:null,
+                  onPressed: _image != null
+                      ? () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => QuestionView(
+                                    image: _image!,
+                                  )));
+                        }
+                      : null,
                   child: Text('Continue'),
                 ),
               )

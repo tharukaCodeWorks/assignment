@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ViewSolution extends StatelessWidget {
+  final String solution;
+  final double rate;
+  const ViewSolution({Key? key, required this.solution, required this.rate})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +29,7 @@ class ViewSolution extends StatelessWidget {
                           color: Colors.black45,
                         )),
                     child: Center(
-                      child: Text('Solution Details'),
+                      child: Text(solution),
                     ),
                   ),
                   Container(
@@ -43,8 +47,8 @@ class ViewSolution extends StatelessWidget {
                         width: 10,
                       ),
                       RatingBar.builder(
-                        initialRating: 3,
-                        minRating: 1,
+                        initialRating: rate,
+                        minRating: 0,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
                         itemCount: 5,

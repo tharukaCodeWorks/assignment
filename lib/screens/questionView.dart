@@ -1,57 +1,38 @@
 import 'dart:io';
 
+import 'package:assignment/model/DiseaseResult.dart';
 import 'package:assignment/screens/Treatments.dart';
-import 'package:assignment/screens/ViewSolution.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-Widget ListItem(context) {
-  return GestureDetector(
-    onTap: () => {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => ViewSolution()))
-    },
-    child: Card(
-      child: Padding(
-        padding: EdgeInsets.all(15),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text("Solution 1",
-                style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 18,
-                    color: Colors.black87)),
-            Spacer(),
-            RatingBar.builder(
-              ignoreGestures: true,
-              initialRating: 3,
-              minRating: 1,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              itemSize: 25,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => Icon(
-                Icons.star,
-                color: Colors.amber,
-              ),
-              onRatingUpdate: (rating) {
-                print(rating);
-              },
-            )
-          ],
-        ),
-      ),
-    ),
-  );
+class QuestionView extends StatefulWidget {
+  final File image;
+  const QuestionView({Key? key, required this.image}) : super(key: key);
+
+  @override
+  State<QuestionView> createState() => _QuestionViewState();
 }
 
-class QuestionView extends StatelessWidget {
-  final File image;
-  final String title;
-  const QuestionView({Key? key, required this.image, required this.title})
-      : super(key: key);
+class _QuestionViewState extends State<QuestionView> {
+  DiseaseResult? _diseaseResult;
+
+  @override
+  void initState() {
+    getDiseaseResult();
+    super.initState();
+  }
+
+  getDiseaseResult() async {
+    FormData formData = new FormData.fromMap({"file": widget.image});
+    Response response = await Dio().post(
+        "https://ceylon-e-agro.herokuapp.com/ceylon-e-agro/api/v1/disease-solutions?page=1&limit=5",
+        data: formData);
+    DiseaseResult res = DiseaseResult.fromJson(response.data);
+    setState(() {
+      _diseaseResult = res;
+    });
+    return res;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +52,7 @@ class QuestionView extends StatelessWidget {
                   child: Column(
                 children: [
                   Text(
-                    title,
+                    _diseaseResult?.responseBody?.disease ?? "",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
@@ -85,7 +66,7 @@ class QuestionView extends StatelessWidget {
               Container(
                 width: 300,
                 height: 300,
-                child: Image.file(image),
+                child: Image.file(widget.image),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
@@ -115,8 +96,11 @@ class QuestionView extends StatelessWidget {
               new FlatButton(
                 height: 70,
                 onPressed: () => {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Treatments()))
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Treatments(
+                            diseaseResult:
+                                _diseaseResult == null ? null : _diseaseResult,
+                          )))
                 },
                 color: Colors.lightGreenAccent,
                 padding: EdgeInsets.all(15.0),

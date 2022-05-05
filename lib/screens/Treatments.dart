@@ -1,35 +1,41 @@
+import 'package:assignment/model/DiseaseResult.dart';
 import 'package:assignment/screens/NewDiseasTakeImage.dart';
 import 'package:assignment/screens/ViewSolution.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-Widget ListItem(context) {
+Widget ListItem(context, diseaseName, rating, description) {
   return GestureDetector(
     onTap: () => {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => ViewSolution()))
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ViewSolution(
+                solution: diseaseName,
+                rate: rating,
+              )))
     },
     child: Card(
       child: Padding(
         padding: EdgeInsets.all(15),
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Solution 1",
-                style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 18,
-                    color: Colors.black87)),
-            Spacer(),
+            Flexible(
+                child: Text(diseaseName,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
+                        color: Colors.black87))),
             RatingBar.builder(
               ignoreGestures: true,
-              initialRating: 3,
-              minRating: 1,
+              initialRating: rating,
+              minRating: 0,
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemCount: 5,
-              itemSize: 25,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+              itemSize: 18,
+              itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
               itemBuilder: (context, _) => Icon(
                 Icons.star,
                 color: Colors.amber,
@@ -45,7 +51,14 @@ Widget ListItem(context) {
   );
 }
 
-class Treatments extends StatelessWidget {
+class Treatments extends StatefulWidget {
+  final DiseaseResult? diseaseResult;
+  const Treatments({Key? key, required this.diseaseResult}) : super(key: key);
+  @override
+  State<Treatments> createState() => _TreatmentsState();
+}
+
+class _TreatmentsState extends State<Treatments> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,14 +76,21 @@ class Treatments extends StatelessWidget {
               Expanded(
                   child: SizedBox(
                 height: 100,
-                child: ListView(
-                  children: [
-                    ListItem(context),
-                    ListItem(context),
-                    ListItem(context),
-                    ListItem(context)
-                  ],
-                ),
+                child: ListView.builder(
+                    itemCount:
+                        widget.diseaseResult?.responseBody?.solution?.length,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListItem(
+                          context,
+                          widget.diseaseResult?.responseBody?.solution?[index]
+                              .solution,
+                          widget.diseaseResult?.responseBody?.solution?[index]
+                              .rateScore
+                              ?.toDouble(),
+                          widget.diseaseResult?.responseBody?.solution?[index]
+                              .solutionDescription);
+                    }),
               ))
             ],
           ),

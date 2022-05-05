@@ -4,11 +4,8 @@ import 'package:flutter/material.dart';
 Widget ListItem(context, image, title, numberOfSolution) {
   return GestureDetector(
     onTap: () => {
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => QuestionView(
-                image: image,
-                title: title,
-              )))
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => QuestionView(image: image)))
     },
     child: Card(
       child: Column(
