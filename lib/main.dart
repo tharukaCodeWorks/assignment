@@ -72,22 +72,27 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(fontSize: 25),
             ),
             Container(height: 20),
-            FlatButton(
+            SizedBox(
               height: 50,
-              onPressed: () => {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => MenuList()))
-              },
-              color: Colors.lightGreenAccent,
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    width: 20,
-                  ),
-                  Text("Click Here")
-                ],
+              child: TextButton(
+                onPressed: () => {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => MenuList()))
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.lightGreenAccent,
+                  padding: EdgeInsets.all(10.0),
+                  textStyle: TextStyle(color: Colors.black),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      width: 20,
+                    ),
+                    Text("Click Here", style: TextStyle(color: Colors.black87)),
+                  ],
+                ),
               ),
             )
           ],

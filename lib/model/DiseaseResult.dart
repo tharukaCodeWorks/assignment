@@ -34,13 +34,15 @@ class ResponseBody {
   int? currentPage;
   int? totalItems;
   int? totalPages;
+  String? diseaseDescription;
 
   ResponseBody(
       {this.disease,
-        this.solution,
-        this.currentPage,
-        this.totalItems,
-        this.totalPages});
+      this.solution,
+      this.currentPage,
+      this.totalItems,
+      this.totalPages,
+      this.diseaseDescription});
 
   ResponseBody.fromJson(Map<String, dynamic> json) {
     disease = json['disease'];
@@ -53,6 +55,7 @@ class ResponseBody {
     currentPage = json['currentPage'];
     totalItems = json['totalItems'];
     totalPages = json['totalPages'];
+    diseaseDescription = json['diseaseDescription'];
   }
 
   Map<String, dynamic> toJson() {
@@ -64,6 +67,7 @@ class ResponseBody {
     data['currentPage'] = this.currentPage;
     data['totalItems'] = this.totalItems;
     data['totalPages'] = this.totalPages;
+    data['diseaseDescription'] = this.diseaseDescription;
     return data;
   }
 }
@@ -78,11 +82,11 @@ class Solution {
 
   Solution(
       {this.solutionId,
-        this.solutionCode,
-        this.solution,
-        this.solutionDescription,
-        this.rateScore,
-        this.solutionType});
+      this.solutionCode,
+      this.solution,
+      this.solutionDescription,
+      this.rateScore,
+      this.solutionType});
 
   Solution.fromJson(Map<String, dynamic> json) {
     solutionId = json['solution_id'];

@@ -16,43 +16,53 @@ class FindTreatments extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              new FlatButton(
-                height: 70,
-                onPressed: () => {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => NewDiseasTakeImage()))
-                },
-                color: Colors.lightGreenAccent,
-                padding: EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.ac_unit),
-                    Container(
-                      width: 20,
-                    ),
-                    Text("Detect Disease")
-                  ],
+              SizedBox(
+                child: new TextButton(
+                  onPressed: () => {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => NewDiseasTakeImage()))
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.lightGreenAccent,
+                    padding: EdgeInsets.all(10.0),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.ac_unit, color: Colors.black87),
+                      Container(
+                        width: 20,
+                      ),
+                      Text("Detect Disease",
+                          style: TextStyle(color: Colors.black87))
+                    ],
+                  ),
                 ),
+                height: 70,
               ),
               Container(height: 20.0),
-              new FlatButton(
+              SizedBox(
                 height: 70,
-                onPressed: () => {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => NewDiseasTakeImage()))
-                },
-                color: Colors.lightGreenAccent,
-                padding: EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.bug_report),
-                    Container(
-                      width: 20,
-                    ),
-                    Text("Detect Incests")
-                  ],
+                child: new TextButton(
+                  onPressed: () => {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => NewDiseasTakeImage()))
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.lightGreenAccent,
+                    padding: EdgeInsets.all(10.0),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.bug_report, color: Colors.black87),
+                      Container(
+                        width: 20,
+                      ),
+                      Text("Detect Incests",
+                          style: TextStyle(color: Colors.black87))
+                    ],
+                  ),
                 ),
               ),
             ],

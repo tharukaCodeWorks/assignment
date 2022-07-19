@@ -36,74 +36,99 @@ class _MenuListState extends State<MenuList> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            new FlatButton(
+            SizedBox(
               height: 70,
-              onPressed: () => {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => FindTreatments()))
-              },
-              color: Colors.lightGreenAccent,
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(Icons.cases_sharp),
-                  Container(
-                    width: 20,
-                  ),
-                  Text("Find Treatments")
-                ],
+              child: new TextButton(
+                onPressed: () => {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => FindTreatments()))
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.lightGreenAccent,
+                  padding: EdgeInsets.all(10.0),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(
+                      Icons.cases_sharp,
+                      color: Colors.black87,
+                    ),
+                    Container(
+                      width: 20,
+                    ),
+                    Text("Find Treatments",
+                        style: TextStyle(color: Colors.black87))
+                  ],
+                ),
               ),
             ),
             Container(height: 20.0),
-            new FlatButton(
+            SizedBox(
               height: 70,
-              onPressed: () => {},
-              color: Colors.lightGreenAccent,
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(Icons.add_chart),
-                  Container(
-                    width: 20,
-                  ),
-                  Text("Forecast Maize Market")
-                ],
+              child: new TextButton(
+                onPressed: () => {},
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.lightGreenAccent,
+                  padding: EdgeInsets.all(10.0),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.add_chart, color: Colors.black87),
+                    Container(
+                      width: 20,
+                    ),
+                    Text("Forecast Maize Market",
+                        style: TextStyle(color: Colors.black87))
+                  ],
+                ),
               ),
             ),
             Container(height: 20.0),
-            new FlatButton(
+            SizedBox(
               height: 70,
-              onPressed: () => {},
-              color: Colors.lightGreenAccent,
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(Icons.person),
-                  Container(
-                    width: 20,
-                  ),
-                  Text("Agri Agent")
-                ],
+              child: new TextButton(
+                onPressed: () => {},
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.lightGreenAccent,
+                  padding: EdgeInsets.all(10.0),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(
+                      Icons.person,
+                      color: Colors.black87,
+                    ),
+                    Container(
+                      width: 20,
+                    ),
+                    Text("Agri Agent", style: TextStyle(color: Colors.black87))
+                  ],
+                ),
               ),
             ),
             Container(height: 20.0),
-            new FlatButton(
+            SizedBox(
               height: 70,
-              onPressed: () => {},
-              color: Colors.lightGreenAccent,
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(Icons.call),
-                  Container(
-                    width: 20,
-                  ),
-                  Text("Maintenance Support")
-                ],
+              child: new TextButton(
+                onPressed: () => {},
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.lightGreenAccent,
+                  padding: EdgeInsets.all(10.0),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.call, color: Colors.black87),
+                    Container(
+                      width: 20,
+                    ),
+                    Text("Maintenance Support",
+                        style: TextStyle(color: Colors.black87))
+                  ],
+                ),
               ),
             )
           ],

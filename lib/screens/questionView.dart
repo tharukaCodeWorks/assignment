@@ -78,7 +78,7 @@ class _QuestionViewState extends State<QuestionView> {
               ),
               Container(
                 margin: const EdgeInsets.all(15.0),
-
+                padding: const EdgeInsets.all(15.0),
                 // width: 300,
                 height: 200,
                 decoration: BoxDecoration(
@@ -86,33 +86,41 @@ class _QuestionViewState extends State<QuestionView> {
                     border: Border.all(
                       color: Colors.black45,
                     )),
-                child: Center(
-                  child: Text('Disease Description'),
-                ),
+                child: SingleChildScrollView(
+                    child: Center(
+                  child: Text(
+                      _diseaseResult?.responseBody?.diseaseDescription ?? ""),
+                )),
               ),
               Container(
                 height: 20,
               ),
-              new FlatButton(
+              SizedBox(
                 height: 70,
-                onPressed: () => {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Treatments(
-                            diseaseResult:
-                                _diseaseResult == null ? null : _diseaseResult,
-                          )))
-                },
-                color: Colors.lightGreenAccent,
-                padding: EdgeInsets.all(15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(Icons.checklist),
-                    Container(
-                      width: 20,
-                    ),
-                    Text("Find Treatments")
-                  ],
+                child: new TextButton(
+                  onPressed: () => {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Treatments(
+                              diseaseResult: _diseaseResult == null
+                                  ? null
+                                  : _diseaseResult,
+                            )))
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.lightGreenAccent,
+                    padding: EdgeInsets.all(15.0),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.checklist, color: Colors.black87),
+                      Container(
+                        width: 20,
+                      ),
+                      Text("Find Treatments",
+                          style: TextStyle(color: Colors.black87))
+                    ],
+                  ),
                 ),
               )
             ],
